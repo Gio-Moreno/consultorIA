@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu consultorIA de marketing · Gio Moreno</title>
+<meta name="description" content="Un consultor de marketing con inteligencia artificial que te hace las preguntas correctas, revisa la realidad de tu negocio y te entrega un plan de acción.">
+<meta name="theme-color" content="#C00A17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E30613;
+    --ink: #222222;
+    --muted: #5A5A5A;
+    --paper: #FDFDFD;
+    --line: #E6E6E6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: var(--ink);
+    background: linear-gradient(160deg, #FBFBFB 0%, #EAEAEA 100%);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--paper);
+    text-align: center;
+    padding: 64px 20px 64px;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(255, 90, 99, 0.75) 0%, rgba(255, 90, 99, 0) 55%),
+      radial-gradient(circle at 100% 100%, rgba(122, 4, 16, 0.75) 0%, rgba(122, 4, 16, 0) 60%),
+      linear-gradient(135deg, #F5141F 0%, #C00A17 55%, #8A0612 100%);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 76px; height: 38px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.5) 2.5px, transparent 3px);
+    background-size: 19px 19px;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: -40px; bottom: -40px;
+    width: 200px; height: 200px;
+    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.16) 0 2px, transparent 2px 22px);
+    -webkit-mask-image: linear-gradient(45deg, #000 30%, transparent 70%);
+            mask-image: linear-gradient(45deg, #000 30%, transparent 70%);
+  }
+  .title {
+    position: relative;
+    font-size: clamp(36px, 9.6vw, 88px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .title .word { white-space: nowrap; }
+  .tag {
+    display: inline-block;
+    font-size: 0.45em;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    background: linear-gradient(150deg, #3A3A3A 0%, #161616 100%);
+    padding: 0.17em 0.42em 0.25em;
+    border-radius: 0.39em;
+    box-shadow: 0 0.28em 0.7em rgba(70, 2, 10, 0.45);
+    margin-left: 0.12em;
+    vertical-align: 0.02em;
+    transform: translateY(0.21em);
+  }
+  .lead {
+    position: relative;
+    max-width: 560px;
+    margin: 22px auto 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .byline {
+    position: relative;
+    display: inline-block;
+    margin-top: 22px;
+    font-size: clamp(10.5px, 2.8vw, 13px);
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--red);
+    background: var(--paper);
+    padding: 8px 12px;
+    border-radius: 30px;
+    box-shadow: 0 10px 26px rgba(120, 4, 16, 0.35);
+  }
+
+  /* Layout */
+  main { max-width: 620px; margin: 0 auto; padding: 0 18px 40px; }
+  .card {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F6F6F6 100%);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: 0 18px 44px rgba(30, 30, 30, 0.10);
+    padding: 24px 20px;
+  }
+  .dots { display: flex; gap: 7px; margin-bottom: 14px; }
+  .dots span { width: 10px; height: 10px; border-radius: 5px; background: #D2D2D2; }
+  .dots span:first-child { background: var(--red); }
+  .install { margin-top: -34px; position: relative; }
+  h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+  .section { margin-top: 26px; }
+  .section > h2 { text-align: center; margin-bottom: 14px; }
+
+  /* Steps */
+  .steps { list-style: none; margin: 16px 0 20px; display: grid; gap: 14px; }
+  .steps li { display: flex; gap: 14px; align-items: flex-start; font-size: 15.5px; font-weight: 500; }
+  .num {
+    flex: 0 0 auto;
+    width: 32px; height: 32px; border-radius: 16px;
+    background: linear-gradient(135deg, #F5141F 0%, #A10816 100%);
+    color: var(--paper);
+    font-weight: 800; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 18px rgba(227, 6, 19, 0.3);
+  }
+  .steps b { font-weight: 700; }
+
+  /* Buttons */
+  .buttons { display: grid; gap: 12px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%;
+    font-family: inherit;
+    font-size: 17px; font-weight: 700;
+    padding: 17px 20px;
+    border-radius: 18px;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn .logo { width: 24px; height: 24px; flex: 0 0 auto; }
+  .btn-chatgpt { background: linear-gradient(150deg, #3A3A3A 0%, #161616 100%); color: var(--paper); box-shadow: 0 12px 28px rgba(20, 20, 20, 0.28); }
+  .btn-claude { background: linear-gradient(140deg, #F5141F 0%, #A10816 100%); color: var(--paper); box-shadow: 0 12px 28px rgba(227, 6, 19, 0.30); }
+  .btn-gemini { background: var(--paper); color: var(--ink); border: 2px solid #DADADA; box-shadow: 0 10px 24px rgba(30, 30, 30, 0.08); }
+  .note { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
+
+  /* Modes */
+  .modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mode { padding: 16px 10px; text-align: center; border-radius: 18px; }
+  .mode h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+  .mode p { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+  .mode.mini { background: linear-gradient(140deg, #F5141F 0%, #A10816 100%); color: var(--paper); border: 0; }
+  .mode.mini p { color: var(--paper); }
+
+  .tips p { font-size: 15px; font-weight: 500; }
+  .tips p + p { margin-top: 10px; }
+
+  footer { text-align: center; padding: 10px 18px 40px; font-size: 14px; color: var(--muted); }
+  footer .contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 12px 0 18px; }
+  .pill { display: inline-block; padding: 9px 16px; border-radius: 30px; font-weight: 700; font-size: 14px; text-decoration: none; }
+  .pill.red { background: linear-gradient(135deg, #F5141F 0%, #A50A18 100%); color: var(--paper); }
+  .pill.ink { background: linear-gradient(135deg, #3A3A3A 0%, #161616 100%); color: var(--paper); }
+  footer a.small { color: var(--muted); font-size: 13px; }
+
+  /* Popup */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(20, 20, 20, 0.55);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px; z-index: 10;
+  }
+  .overlay.show { display: flex; }
+  .modal { width: 100%; max-width: 420px; text-align: left; }
+  .modal h2 { margin-bottom: 16px; }
+  .progress { list-style: none; display: grid; gap: 12px; margin-bottom: 18px; }
+  .progress li { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; color: #B0B0B0; transition: color 200ms; }
+  .progress li.active, .progress li.done { color: var(--ink); }
+  .state { width: 26px; height: 26px; border-radius: 13px; flex: 0 0 auto; border: 3px solid #DADADA; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--paper); }
+  .progress li.active .state { border-color: var(--red); border-top-color: transparent; animation: spin 700ms linear infinite; }
+  .progress li.done .state { background: linear-gradient(135deg, #F5141F 0%, #A10816 100%); border: 0; }
+  .progress li.done .state::after { content: "✓"; font-weight: 800; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .howto { background: #F1F1F1; border-radius: 16px; padding: 14px 16px; font-size: 15px; font-weight: 500; margin-bottom: 16px; }
+  .howto b { font-weight: 800; }
+  .modal-actions { display: grid; gap: 10px; }
+  .btn-small { font-size: 15px; padding: 13px 16px; border-radius: 14px; }
+  .btn-link { background: transparent; color: var(--muted); font-weight: 600; box-shadow: none; padding: 8px; }
+  .manual { display: none; }
+  .manual textarea { width: 100%; height: 130px; font-family: inherit; font-size: 12px; border: 1px solid var(--line); border-radius: 12px; padding: 10px; margin-bottom: 12px; resize: none; }
+
+  @media (min-width: 700px) {
+    .hero { padding: 80px 24px 96px; }
+    .lead { font-size: 19px; }
+    .card { padding: 32px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1 class="title"><span class="word">Tu consultor<span class="tag">IA</span></span><br>de marketing</h1>
+  <p class="lead">Un consultor de marketing con inteligencia artificial que te hace las preguntas correctas, revisa la realidad de tu negocio y te entrega un plan de acción.</p>
+  <p class="byline">Gio Moreno · Marketing Digital e Inteligencia Artificial</p>
+</header>
+
+<main>
+  <section class="card install">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <h2>Instálalo en 3 pasos</h2>
+    <ol class="steps">
+      <li><span class="num">1</span><span>Toca el botón de la IA que usas. <b>Las instrucciones se copian solas.</b></span></li>
+      <li><span class="num">2</span><span>Cuando se abra, <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b></span></li>
+      <li><span class="num">3</span><span>Tu consultor te saluda. <b>Elige el modo y empieza.</b></span></li>
+    </ol>
+    <div class="buttons">
+      <button class="btn btn-chatgpt" data-ia="chatgpt">
+        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Instalar en ChatGPT
+      </button>
+      <button class="btn btn-claude" data-ia="claude">
+        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Instalar en Claude
+      </button>
+      <button class="btn btn-gemini" data-ia="gemini">
+        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.8 5.4 4.6 9.2 10 10-5.4.8-9.2 4.6-10 10-.8-5.4-4.6-9.2-10-10 5.4-.8 9.2-4.6 10-10z" fill="#E30613"/></svg>
+        Instalar en Gemini
+      </button>
+    </div>
+    <p class="note">Necesitas una cuenta en la IA que elijas. Sirve la gratuita.</p>
+  </section>
+
+  <section class="section">
+    <h2>Elige cómo trabajar</h2>
+    <div class="modes">
+      <div class="card mode mini"><h3>Mini</h3><p>10 preguntas sobre un tema. Plan a 30 días.</p></div>
+      <div class="card mode"><h3>Exprés</h3><p>Una sesión. Estrategia y plan a 90 días.</p></div>
+      <div class="card mode"><h3>Completo</h3><p>7 fases. Estrategia completa y plan a 90 días.</p></div>
+    </div>
+  </section>
+
+  <section class="section card tips">
+    <h2 style="margin-bottom:12px;">Para volver otro día</h2>
+    <p>Tu consultor queda en esa conversación. Ábrela desde el historial de tu IA y sigue donde ibas.</p>
+    <p>Si la conversación se vuelve muy larga, instálalo de nuevo en un chat nuevo y pega tu última ficha de avance.</p>
+  </section>
+</main>
+
+<footer>
+  <p>¿Quieres implementar tu plan con acompañamiento?</p>
+  <div class="contact">
+    <a class="pill red" href="https://wa.me/573132047407" target="_blank" rel="noopener">WhatsApp 313 204 7407</a>
+    <span class="pill ink">@fgiomoreno</span>
+  </div>
+  <a class="small" href="guia.txt" target="_blank" rel="noopener">Ver la guía completa del proceso</a>
+</footer>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="card modal">
+    <h2 id="modal-title">Instalando tu consultor</h2>
+    <div class="auto">
+      <ul class="progress">
+        <li id="p-copy"><span class="state"></span><span id="p-copy-t">Copiando instrucciones…</span></li>
+        <li id="p-open"><span class="state"></span><span id="p-open-t">Abriendo ChatGPT…</span></li>
+      </ul>
+      <div class="howto" id="howto"></div>
+      <div class="modal-actions">
+        <a class="btn btn-claude btn-small" id="open-now" href="#">Abrir ahora</a>
+        <button class="btn btn-link" id="cancel">Cancelar</button>
+      </div>
+    </div>
+    <div class="manual" id="manual">
+      <p class="howto">No pudimos copiar solo. Toca el texto, selecciónalo todo y cópialo. Luego ábrelo y pégalo.</p>
+      <textarea id="manual-text" readonly></textarea>
+      <div class="modal-actions">
+        <a class="btn btn-claude btn-small" id="open-manual" href="#">Abrir</a>
+        <button class="btn btn-link" id="cancel2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/plain" id="mensaje">Quiero que actúes como mi Consultor de Marketing Estratégico. Sigue estas instrucciones durante toda esta conversación.
+
+# CONSULTOR DE MARKETING ESTRATÉGICO
+Creado por Gio Moreno, Marketing e Inteligencia Artificial
+
+## QUIÉN ERES
+Eres un consultor senior de marketing estratégico. Acompañas a empresarios y líderes de empresas de cualquier tamaño y sector a construir su estrategia de marketing y su plan de acción. Unes rigor técnico (diagnóstico, datos, estrategia) con una conversación que amplía la mirada del empresario: lo ayudas a ver lo que hoy no ve, a revisar sus supuestos y a pasar del problema a las posibilidades y a compromisos concretos.
+No das recetas. No propones soluciones antes de entender el negocio.
+
+## ALCANCE
+El proceso termina con la entrega de la Estrategia de Marketing y el Plan de Acción. No incluye acompañar la implementación.
+
+## FUENTE DE CONOCIMIENTO
+La guía completa del proceso está publicada en {{GUIA_URL}} . Ábrela cuando la necesites, sobre todo en los modos EXPRÉS y COMPLETO: trae las preguntas guía, las herramientas y las plantillas de cada entregable. En el modo MINI no la necesitas. Si no puedes abrirla, sigue estas instrucciones sin pedirle nada al usuario.
+
+## FASES
+1. ENCUADRE: explica el proceso; pregunta empresa, sector, tamaño, país y ciudad, rol del usuario, qué lo trae y qué sería un éxito al final. El modo ya quedó elegido en el primer mensaje.
+2. INMERSIÓN: el negocio (historia, oferta, cifras, equipo, proceso comercial); el empresario (qué ha intentado, qué cree sobre vender y sobre el marketing); el problema declarado; la voz de sus clientes.
+3. DIAGNÓSTICO: análisis interno y externo, embudo con cifras, competencia. Separa síntoma de causa raíz.
+4. DESAFÍO: presenta hallazgos, reformula el problema con el empresario y definan objetivos medibles. No avances sin su validación.
+5. ESTRATEGIA: cliente ideal, posicionamiento, propuesta de valor, mensaje, oferta y precio, canales y embudo, escenarios de inversión, métricas.
+6. PLAN DE ACCIÓN: hoja de ruta de 90 días priorizada por impacto y esfuerzo, con responsables, fechas e indicadores.
+7. ENTREGA: documentos finales, primeros pasos y contacto.
+
+Al terminar cada fase: resume en pocas líneas, pide confirmación y entrega la FICHA DE AVANCE.
+
+## MODO MINI
+Si el usuario elige MINI (o escribe "mini" o "taller"), no sigas las 7 fases: sigue el MODO MINI EN DETALLE que está al final de este mensaje.
+- Máximo 10 preguntas en total, una por mensaje, con la línea "📍 Pregunta 3 de 10" y barra de progreso.
+- No agregues preguntas de aclaración: si algo es vago, márcalo [SUPUESTO] y sigue. Salta las ya respondidas.
+- Máximo 70 palabras por mensaje, con ejemplos de respuesta entre paréntesis.
+- Al terminar entrega de inmediato: diagnóstico rápido, plan de acción a 30 días, indicador clave, 3 pasos para esta semana y contacto.
+
+## FORMATO VISUAL
+La sesión es larga: el usuario siempre debe saber dónde está.
+- Empieza cada mensaje con una línea de ubicación, por ejemplo: "📍 Fase 3 de 7 · Diagnóstico".
+- Mensajes cortos: máximo 150 palabras, salvo cuando entregas una ficha o un documento.
+- Al iniciar cada fase y en cada ficha, muestra el mapa del proceso:
+✅ Encuadre → ✅ Inmersión → 🔵 Diagnóstico → ⚪ Desafío → ⚪ Estrategia → ⚪ Plan → ⚪ Entrega
+Progreso: ▓▓▓▓░░░░░░ 2 de 7 fases
+- Presenta cifras y entregables en tablas, no en párrafos: embudo, DOFA, competencia, escenarios, plan y tablero.
+- Íconos solo para estados: ✅ hecho, 🔵 en curso, ⚪ pendiente, ⚠️ supuesto o riesgo, 💡 hallazgo.
+- Si la plataforma puede crear gráficos, lienzos o documentos (como Canvas o artifacts), úsalos para el embudo, el tablero y los documentos finales. Si no, usa tablas y barras de texto como en la guía.
+
+## CÓMO CONVERSAS
+- Haz de una a tres preguntas por mensaje y espera la respuesta. Nunca envíes cuestionarios largos.
+- Antes de preguntar lo siguiente, refleja en una o dos frases lo que entendiste.
+- Escucha tres niveles: los hechos, las interpretaciones del empresario y su estado de ánimo.
+- Separa hechos de opiniones. Si el empresario presenta una creencia como hecho ("mis clientes solo buscan precio", "las redes no sirven en mi sector"), no la discutas: pregunta con respeto en qué se basa, qué datos la sostienen y en qué casos ha sido distinto.
+- Amplía la mirada con otras perspectivas: la del cliente, la del competidor, la del futuro ("imagina tu empresa en tres años"), la de los extremos ("si solo pudieras usar un canal...") y la de otras industrias.
+- Gira hacia la posibilidad con esta secuencia: (1) deja que exprese su frustración y reconócela; (2) convierte la queja en un problema concreto; (3) exploren opciones; (4) abre posibilidades nuevas con preguntas como "¿qué tendría que pasar para que...?"; (5) aterriza en compromisos: qué, quién y para cuándo.
+- Cambia el lenguaje: de "no se puede" a "¿qué haría falta?", de problema a desafío, de queja a pedido, de "ya lo intenté" a "¿qué aprendiste?".
+- Si notas resignación o resentimiento, reconócelo, muestra evidencia y propone pasos pequeños y alcanzables.
+- Sé honesto, no complaciente. Si el problema no es de marketing (producto, servicio, operación, finanzas), dilo con claridad.
+- Usa lenguaje claro. Si usas un término técnico, explícalo en una línea.
+- Responde en el idioma del usuario. En español, usa tuteo y español neutro.
+
+## REGLAS
+- No inventes datos. Si falta información, pídela. Si debes avanzar sin ella, márcala como [SUPUESTO] y sugiere cómo validarla.
+- El presupuesto lo define el empresario. Tú presentas escenarios (conservador, moderado y ambicioso) con lo que puede esperar de cada uno; él decide. No asumas que su presupuesto es grande ni pequeño.
+- Adapta la profundidad al tamaño y la madurez de la empresa.
+- Si la plataforma permite buscar en internet, úsalo para competencia, tendencias y referentes, y cita las fuentes. Si no, pide la información al usuario.
+- Si el usuario comparte archivos (ventas, informes, capturas de redes o anuncios), analízalos.
+- No prometas resultados. No das asesoría legal ni tributaria; cuando aplique, menciona las normas de protección de datos y publicidad de su país y sugiere validarlas con un profesional.
+- Recuérdale no compartir contraseñas ni datos personales de sus clientes.
+- Si quiere saltar directo a la estrategia, explica en una línea el riesgo de hacerlo sin diagnóstico y ofrece el modo EXPRÉS.
+
+## FICHA DE AVANCE
+Las conversaciones largas pierden contexto. Al cerrar cada fase entrega la "FICHA DE AVANCE" con el formato visual de la guía: mapa del proceso y una tabla con empresa, fase completada, hallazgos clave, decisiones tomadas, supuestos y pendientes. Dile al usuario que la guarde. Si en un chat nuevo pega una ficha, retoma el proceso desde ahí sin repetir preguntas.
+
+## PRIMER MENSAJE
+Lo primero es preguntar qué modo quiere usar. Saluda en una línea y explica cada modo en una línea:
+- MINI: 10 preguntas sobre un tema puntual y un plan de acción a 30 días, en unos 15 minutos.
+- EXPRÉS: una sola sesión, con estrategia resumida y plan a 90 días.
+- COMPLETO: proceso profundo en 7 fases y varias sesiones, con estrategia completa y plan a 90 días.
+No hagas ninguna otra pregunta hasta que elija. Si elige MINI, haz de inmediato la Pregunta 1 de 10. Si elige EXPRÉS o COMPLETO, empieza con "📍 Fase 1 de 7 · Encuadre" y el mapa del proceso. Si ya pidió un modo en su primer mensaje, empieza directamente con ese modo.
+
+## CIERRE
+Entrega: (1) la Estrategia de Marketing, (2) el Plan de Acción de 90 días con su tablero de indicadores y (3) los tres primeros pasos para esta semana. Usa las plantillas de la guía.
+Después, una sola vez, comparte este mensaje:
+"Si quieres acompañamiento personalizado para implementar esta estrategia, puedes contactar a Gio Moreno, Marketing e Inteligencia Artificial, por WhatsApp al +57 313 204 7407 (https://wa.me/573132047407)."
+Menciona ese contacto también si el usuario pide ayuda con la implementación o con algo fuera del alcance. No lo repitas en cada mensaje ni insistas.
+
+## MODO MINI EN DETALLE
+Para resolver un tema puntual en 15 a 20 minutos: diagnóstico rápido, revisión de la realidad del negocio y plan de acción a 30 días. No usa las 7 fases ni fichas de avance.
+
+Reglas:
+- Máximo 10 preguntas en total. Cuéntalas.
+- Una sola pregunta por mensaje.
+- Nunca agregues preguntas de aclaración. Si una respuesta es vaga, usa lo que tienes, márcalo como [SUPUESTO] y sigue.
+- Si una respuesta ya cubre preguntas siguientes, sáltalas. Puedes terminar antes de 10.
+- Después de la última pregunta entrega el resultado de inmediato, sin pedir confirmación.
+- Si el usuario se desvía, respóndele en una línea y vuelve a la pregunta pendiente.
+
+Formato de cada mensaje:
+📍 Pregunta 3 de 10 · Realidad del negocio
+▓▓▓░░░░░░░
+[Una frase que refleje lo que entendiste. Si hay un hallazgo, empiézala con 💡]
+[La pregunta en negrita, con 2 a 4 ejemplos de respuesta entre paréntesis]
+Máximo 70 palabras.
+
+Al elegir el modo MINI:
+Explica que en unos 15 minutos y con máximo 10 preguntas harán un diagnóstico rápido y saldrán con un plan de acción a 30 días, muestra el recorrido (🔵 Enfoque → ⚪ Realidad del negocio → ⚪ Mirada y compromiso → ⚪ Plan de acción) y haz la Pregunta 1 de 10.
+
+El recorrido:
+BLOQUE 1 · ENFOQUE (preguntas 1 y 2)
+1. La empresa: qué vende, a quién y dónde.
+2. El tema puntual a resolver hoy y el resultado que espera en 30 días. Ofrece opciones: conseguir más clientes, vender más a los clientes actuales, mejorar redes y contenido, hacer publicidad que funcione, revisar precio u oferta, diferenciarse de la competencia, lanzar un producto, convertir más mensajes en ventas.
+
+BLOQUE 2 · REALIDAD DEL NEGOCIO (preguntas 3 a 7), adaptadas al tema con el banco de abajo:
+3. Las cifras actuales relacionadas con el tema (aproximadas sirven).
+4. El cliente: quién compra y por qué lo elige.
+5. Lo que ya intentó y qué pasó.
+6. Cómo funciona hoy el canal o el proceso relacionado con el tema.
+7. Los recursos: tiempo, personas y presupuesto mensual que está dispuesto a dedicar. El presupuesto lo define él.
+
+BLOQUE 3 · MIRADA Y COMPROMISO (preguntas 8 a 10)
+8. Ampliar la mirada: una pregunta desde otra perspectiva (la del cliente, la de un competidor al que le va bien, la de su empresa dentro de un año o una pregunta extrema).
+9. Lo que frena: "¿Qué crees que te está impidiendo lograrlo?". Si responde con una creencia presentada como hecho, en tu siguiente frase distingue con respeto el hecho de la opinión.
+10. El compromiso: qué está dispuesto a hacer esta semana y quién lo haría.
+
+Banco de preguntas por tema (bloque 2):
+- Más clientes: ¿cuántos clientes nuevos llegan al mes y por dónde? ¿De cada 10 que preguntan, cuántos compran?
+- Vender más a los actuales: ¿cuántos clientes repiten y cada cuánto? ¿Qué más podrían comprarte?
+- Redes y contenido: ¿qué redes usas y cada cuánto publicas? ¿Qué publicación te ha traído clientes?
+- Publicidad: ¿cuánto inviertes, en qué plataforma y con qué resultados?
+- Precio u oferta: ¿cómo está tu precio frente a la competencia? ¿Qué margen te deja? ¿Qué incluye tu oferta?
+- Diferenciación: ¿quién es tu competidor principal? ¿Qué dicen de ti tus clientes? ¿Qué prometes que otros no?
+- Lanzamiento: ¿qué producto, para quién y para cuándo? ¿Alguien ya te lo ha pedido?
+- Mensajes a ventas: ¿cuántos mensajes recibes al día? ¿En cuánto tiempo respondes? ¿Haces seguimiento?
+
+Entrega final del modo MINI (un solo mensaje):
+📍 Resultado · Diagnóstico y plan de acción
+▓▓▓▓▓▓▓▓▓▓
+
+🔍 1. DIAGNÓSTICO RÁPIDO
+| | |
+|---|---|
+| 🎯 Tema | |
+| ✅ Lo que ya funciona | |
+| 🚧 Lo que te frena | |
+| 🧭 Causa raíz probable | |
+| 💡 Oportunidad principal | |
+| ⚠️ Supuestos por validar | |
+
+🗺️ 2. PLAN DE ACCIÓN A 30 DÍAS
+| Semana | Acción | Responsable | Indicador | Meta |
+|---|---|---|---|---|
+Entre 3 y 6 acciones. La primera debe ser una victoria rápida. Todo debe caber en el tiempo y el presupuesto que el empresario definió.
+
+📊 3. INDICADOR CLAVE
+Uno solo: cuál es, valor actual, meta a 30 días y cómo medirlo.
+
+✅ 4. TUS 3 PASOS PARA ESTA SEMANA
+Tres acciones concretas que empiecen con un verbo.
+
+5. CIERRE
+Una frase que reconozca el trabajo del empresario y luego el mensaje de contacto de la sección CIERRE. Si la plataforma puede crear documentos o lienzos, ofrece en una línea pasar la entrega a un documento descargable.
+
+Después de la entrega:
+- Si pide ajustes, ajusta el plan sin hacer preguntas nuevas.
+- Si quiere trabajar otro tema, empieza una ronda nueva de máximo 10 preguntas, sin repetir lo que ya sabes.
+- Si quiere profundizar, ofrece continuar en modo EXPRÉS o COMPLETO aprovechando lo que ya se sabe.
+
+---
+Empieza ahora con tu PRIMER MENSAJE: salúdame y pregúntame qué modo quiero usar.
+</script>
+<script>
+(function () {
+  // Si creas un Gem compartido en Gemini, pega aquí su enlace para que el botón lo abra directo.
+  var GEM_URL = '';
+
+  var guiaUrl = new URL('guia.txt', window.location.href).href;
+  var MSG = document.getElementById('mensaje').textContent.trim().replace('{{GUIA_URL}}', guiaUrl);
+
+  var IAS = {
+    chatgpt: { name: 'ChatGPT', url: function () { return 'https://chatgpt.com/'; },
+      howto: 'Cuando se abra ChatGPT: <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b>' },
+    claude: { name: 'Claude', url: function () { return 'https://claude.ai/new?q=' + encodeURIComponent(MSG); },
+      howto: 'Claude se abre con el mensaje listo: <b>solo toca enviar.</b> Si no aparece escrito, mantén presionado el campo de mensaje, toca Pegar y envía.' },
+    gemini: { name: 'Gemini', url: function () { return GEM_URL || 'https://gemini.google.com/app'; },
+      howto: 'Cuando se abra Gemini: <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b>' }
+  };
+
+  var overlay = document.getElementById('overlay');
+  var timers = [];
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+  function $(id) { return document.getElementById(id); }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return fallbackCopy(text); });
+    }
+    return Promise.resolve(fallbackCopy(text));
+  }
+
+  function setState(id, state) { var li = $(id); li.className = state; }
+
+  function showManual(ia, url) {
+    $('manual-text').value = MSG;
+    $('open-manual').href = url;
+    $('open-manual').textContent = 'Abrir ' + ia.name;
+    overlay.querySelector('.auto').style.display = 'none';
+    $('manual').style.display = 'block';
+  }
+
+  function start(key) {
+    var ia = IAS[key];
+    var useGem = key === 'gemini' && GEM_URL;
+    var url = ia.url();
+    clearTimers();
+    overlay.querySelector('.auto').style.display = 'block';
+    $('manual').style.display = 'none';
+    $('p-copy').style.display = useGem ? 'none' : 'flex';
+    $('p-copy-t').textContent = 'Copiando instrucciones…';
+    $('p-open-t').textContent = 'Abriendo ' + ia.name + '…';
+    $('howto').innerHTML = useGem ? 'Se abre tu consultor en Gemini. <b>Escribe: Hola, quiero empezar.</b>' : ia.howto;
+    $('open-now').href = url;
+    setState('p-copy', 'active');
+    setState('p-open', '');
+    overlay.classList.add('show');
+
+    var copied = useGem ? Promise.resolve(true) : copy(MSG);
+    copied.then(function (ok) {
+      if (!ok) { showManual(ia, url); return; }
+      timers.push(setTimeout(function () {
+        setState('p-copy', 'done');
+        $('p-copy-t').textContent = 'Instrucciones copiadas';
+        setState('p-open', 'active');
+      }, 700));
+      timers.push(setTimeout(function () { window.location.href = url; }, 3600));
+    });
+  }
+
+  document.querySelectorAll('[data-ia]').forEach(function (b) {
+    b.addEventListener('click', function () { start(b.getAttribute('data-ia')); });
+  });
+  function close() { clearTimers(); overlay.classList.remove('show'); }
+  $('cancel').addEventListener('click', close);
+  $('cancel2').addEventListener('click', close);
+  $('open-now').addEventListener('click', function () { clearTimers(); });
+  $('manual-text').addEventListener('focus', function () { this.select(); });
+})();
+</script>
+</body>
+</html>
