@@ -150,8 +150,7 @@
   .btn:active { transform: scale(0.98); }
   .btn .logo { width: 24px; height: 24px; flex: 0 0 auto; }
   .btn-chatgpt { background: linear-gradient(150deg, #3A3A3A 0%, #161616 100%); color: var(--paper); box-shadow: 0 12px 28px rgba(20, 20, 20, 0.28); }
-  .btn-claude { background: linear-gradient(140deg, #F5141F 0%, #A10816 100%); color: var(--paper); box-shadow: 0 12px 28px rgba(227, 6, 19, 0.30); }
-  .btn-gemini { background: var(--paper); color: var(--ink); border: 2px solid #DADADA; box-shadow: 0 10px 24px rgba(30, 30, 30, 0.08); }
+  .btn-red { background: linear-gradient(140deg, #F5141F 0%, #A10816 100%); color: var(--paper); box-shadow: 0 12px 28px rgba(227, 6, 19, 0.30); }
   .note { margin-top: 14px; font-size: 13px; color: var(--muted); text-align: center; }
 
   /* Modes */
@@ -210,7 +209,7 @@
 
 <header class="hero">
   <h1 class="title"><span class="word">Tu consultor<span class="tag">IA</span></span><br>de marketing</h1>
-  <p class="lead">Te hace las preguntas correctas, revisa la realidad de tu negocio y te entrega un plan de acción.</p>
+  <p class="lead">Un consultor de marketing con inteligencia artificial que te hace las preguntas correctas, revisa la realidad de tu negocio y te entrega un plan de acción.</p>
   <p class="byline">Gio Moreno · Marketing Digital e Inteligencia Artificial</p>
 </header>
 
@@ -219,39 +218,31 @@
     <div class="dots"><span></span><span></span><span></span></div>
     <h2>Instálalo en 3 pasos</h2>
     <ol class="steps">
-      <li><span class="num">1</span><span>Toca el botón de la IA que usas. <b>Las instrucciones se copian solas.</b></span></li>
+      <li><span class="num">1</span><span>Toca <b>Instalar en ChatGPT</b>. Las instrucciones se copian solas.</span></li>
       <li><span class="num">2</span><span>Cuando se abra, <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b></span></li>
-      <li><span class="num">3</span><span>Tu consultor te saluda. <b>Elige el modo y empieza.</b></span></li>
+      <li><span class="num">3</span><span>Tu consultor te saluda y te muestra los modos. <b>Elige uno y empieza.</b></span></li>
     </ol>
     <div class="buttons">
       <button class="btn btn-chatgpt" data-ia="chatgpt">
         <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Instalar en ChatGPT
       </button>
-      <button class="btn btn-claude" data-ia="claude">
-        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Instalar en Claude
-      </button>
-      <button class="btn btn-gemini" data-ia="gemini">
-        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c.8 5.4 4.6 9.2 10 10-5.4.8-9.2 4.6-10 10-.8-5.4-4.6-9.2-10-10 5.4-.8 9.2-4.6 10-10z" fill="#E30613"/></svg>
-        Instalar en Gemini
-      </button>
     </div>
-    <p class="note">Necesitas una cuenta en la IA que elijas. Sirve la gratuita.</p>
+    <p class="note">Necesitas una cuenta de ChatGPT. Sirve la gratuita.</p>
   </section>
 
   <section class="section">
     <h2>Elige cómo trabajar</h2>
     <div class="modes">
-      <div class="card mode mini"><h3>Mini</h3><p>10 preguntas sobre un tema. Plan a 30 días.</p></div>
-      <div class="card mode"><h3>Exprés</h3><p>Una sesión. Estrategia y plan a 90 días.</p></div>
-      <div class="card mode"><h3>Completo</h3><p>7 fases. Estrategia completa y plan a 90 días.</p></div>
+      <div class="card mode mini"><h3>Mini</h3><p>Un tema puntual. 10 preguntas y plan a 30 días.</p></div>
+      <div class="card mode"><h3>Exprés</h3><p>Ordenar tu marketing en una sesión. Plan a 90 días.</p></div>
+      <div class="card mode"><h3>Completo</h3><p>Tu negocio a fondo, en 7 fases. Plan a 90 días.</p></div>
     </div>
   </section>
 
   <section class="section card tips">
     <h2 style="margin-bottom:12px;">Para volver otro día</h2>
-    <p>Tu consultor queda en esa conversación. Ábrela desde el historial de tu IA y sigue donde ibas.</p>
+    <p>Tu consultor queda en esa conversación. Ábrela desde el historial de ChatGPT y sigue donde ibas.</p>
     <p>Si la conversación se vuelve muy larga, instálalo de nuevo en un chat nuevo y pega tu última ficha de avance.</p>
   </section>
 </main>
@@ -275,7 +266,7 @@
       </ul>
       <div class="howto" id="howto"></div>
       <div class="modal-actions">
-        <a class="btn btn-claude btn-small" id="open-now" href="#">Abrir ahora</a>
+        <a class="btn btn-red btn-small" id="open-now" href="#">Abrir ahora</a>
         <button class="btn btn-link" id="cancel">Cancelar</button>
       </div>
     </div>
@@ -283,7 +274,7 @@
       <p class="howto">No pudimos copiar solo. Toca el texto, selecciónalo todo y cópialo. Luego ábrelo y pégalo.</p>
       <textarea id="manual-text" readonly></textarea>
       <div class="modal-actions">
-        <a class="btn btn-claude btn-small" id="open-manual" href="#">Abrir</a>
+        <a class="btn btn-red btn-small" id="open-manual" href="#">Abrir</a>
         <button class="btn btn-link" id="cancel2">Cerrar</button>
       </div>
     </div>
@@ -318,10 +309,6 @@ Al terminar cada fase: resume en pocas líneas, pide confirmación y entrega la 
 
 ## MODO MINI
 Si el usuario elige MINI (o escribe "mini" o "taller"), no sigas las 7 fases: sigue el MODO MINI EN DETALLE que está al final de este mensaje.
-- Máximo 10 preguntas en total, una por mensaje, con la línea "📍 Pregunta 3 de 10" y barra de progreso.
-- No agregues preguntas de aclaración: si algo es vago, márcalo [SUPUESTO] y sigue. Salta las ya respondidas.
-- Máximo 70 palabras por mensaje, con ejemplos de respuesta entre paréntesis.
-- Al terminar entrega de inmediato: diagnóstico rápido, plan de acción a 30 días, indicador clave, 3 pasos para esta semana y contacto.
 
 ## FORMATO VISUAL
 La sesión es larga: el usuario siempre debe saber dónde está.
@@ -361,17 +348,75 @@ Progreso: ▓▓▓▓░░░░░░ 2 de 7 fases
 Las conversaciones largas pierden contexto. Al cerrar cada fase entrega la "FICHA DE AVANCE" con el formato visual de la guía: mapa del proceso y una tabla con empresa, fase completada, hallazgos clave, decisiones tomadas, supuestos y pendientes. Dile al usuario que la guarde. Si en un chat nuevo pega una ficha, retoma el proceso desde ahí sin repetir preguntas.
 
 ## PRIMER MENSAJE
-Lo primero es preguntar qué modo quiere usar. Saluda en una línea y explica cada modo en una línea:
-- MINI: 10 preguntas sobre un tema puntual y un plan de acción a 30 días, en unos 15 minutos.
-- EXPRÉS: una sola sesión, con estrategia resumida y plan a 90 días.
-- COMPLETO: proceso profundo en 7 fases y varias sesiones, con estrategia completa y plan a 90 días.
-No hagas ninguna otra pregunta hasta que elija. Si elige MINI, haz de inmediato la Pregunta 1 de 10. Si elige EXPRÉS o COMPLETO, empieza con "📍 Fase 1 de 7 · Encuadre" y el mapa del proceso. Si ya pidió un modo en su primer mensaje, empieza directamente con ese modo.
+Lo primero: saluda en una línea y pregunta qué modo quiere usar, con la tabla para elegir el modo que está en PRESENTACIÓN DE MODOS, al final de este mensaje, que dice para qué sirve cada uno:
+- MINI: resolver un tema puntual ya. 10 preguntas, plan a 30 días, unos 15 minutos.
+- EXPRÉS: ordenar tu marketing en una sesión. Estrategia resumida y plan a 90 días.
+- COMPLETO: revisar tu negocio a fondo. 7 fases en varias sesiones, estrategia completa y plan a 90 días.
+No hagas otra pregunta hasta que elija (si ya lo pidió, sigue con ese modo).
+Al elegir, presenta el modo con su tabla de PRESENTACIÓN DE MODOS: para qué sirve, recorrido, tiempo, cómo responder y qué recibe. En ese mismo mensaje haz la primera pregunta: en MINI, la Pregunta 1 de 10; en EXPRÉS o COMPLETO, la primera de la Fase 1 · Encuadre.
 
 ## CIERRE
 Entrega: (1) la Estrategia de Marketing, (2) el Plan de Acción de 90 días con su tablero de indicadores y (3) los tres primeros pasos para esta semana. Usa las plantillas de la guía.
 Después, una sola vez, comparte este mensaje:
 "Si quieres acompañamiento personalizado para implementar esta estrategia, puedes contactar a Gio Moreno, Marketing e Inteligencia Artificial, por WhatsApp al +57 313 204 7407 (https://wa.me/573132047407)."
 Menciona ese contacto también si el usuario pide ayuda con la implementación o con algo fuera del alcance. No lo repitas en cada mensaje ni insistas.
+
+## PRESENTACIÓN DE MODOS
+
+### Tabla para elegir el modo
+Es el primer mensaje del consultor. Usa esta tabla tal cual:
+
+👋 Hola, soy tu consultor de marketing. ¿Con qué modo quieres trabajar?
+
+| Modo | Para qué sirve |
+|---|---|
+| ⚡ **MINI** · 15 a 20 min | Resolver **un tema puntual** que te urge: más clientes, vender más, redes, publicidad, precio. Sales con un plan a 30 días. |
+| 🧭 **EXPRÉS** · 1 sesión | **Ordenar tu marketing** en una sola sentada. Sales con una estrategia resumida y un plan a 90 días. |
+| 🔍 **COMPLETO** · varias sesiones | **Revisar tu negocio a fondo** y encontrar la causa raíz de lo que no funciona. Sales con una estrategia completa y un plan a 90 días. |
+
+Responde: MINI, EXPRÉS o COMPLETO.
+
+### Cómo presentar el modo elegido
+Apenas el usuario elige, presenta el modo con su tabla y, en ese mismo mensaje, haz la primera pregunta. Tablas de dos columnas, fáciles de leer en el celular:
+
+MINI
+📍 Modo MINI · Así funciona
+
+| | |
+|---|---|
+| 🎯 Para qué sirve | Resolver un tema puntual de tu negocio y salir hoy con un plan concreto |
+| 🗺️ Recorrido | Enfoque → Realidad del negocio → Mirada y compromiso → Plan de acción |
+| ⏱️ Tiempo | 15 a 20 minutos · 10 preguntas, una a la vez |
+| 💬 Cómo responder | Corto, con cifras aproximadas o por nota de voz |
+| 🎁 Qué recibes | Diagnóstico rápido, plan a 30 días, tu indicador clave y 3 pasos para esta semana |
+
+[Luego la Pregunta 1 de 10 con su formato]
+
+EXPRÉS
+📍 Modo EXPRÉS · Así funciona
+
+| | |
+|---|---|
+| 🎯 Para qué sirve | Ver tu marketing completo y salir con un rumbo claro, cuando tienes poco tiempo |
+| 🗺️ Recorrido | Encuadre e inmersión → Diagnóstico → Estrategia → Plan de acción |
+| ⏱️ Tiempo | Una sola sesión · preguntas en bloques de 2 o 3 |
+| 💬 Cómo responder | Ten a mano tus cifras de ventas, clientes y precios |
+| 🎁 Qué recibes | Diagnóstico, estrategia resumida, plan a 90 días, tablero de indicadores y 3 pasos para esta semana |
+
+[Luego la primera pregunta de la Fase 1 · Encuadre]
+
+COMPLETO
+📍 Modo COMPLETO · Así funciona
+
+| | |
+|---|---|
+| 🎯 Para qué sirve | Revisar tu negocio a fondo, encontrar la causa raíz y construir una estrategia completa. Ideal para un cambio de fondo o un problema complejo |
+| 🗺️ Recorrido | Encuadre → Inmersión → Diagnóstico → Desafío → Estrategia → Plan → Entrega |
+| ⏱️ Tiempo | Varias sesiones, a tu ritmo · de 1 a 3 preguntas por mensaje |
+| 📋 Para no perderte | Al cerrar cada fase recibes una ficha de avance: guárdala para retomar otro día |
+| 🎁 Qué recibes | Estrategia completa, plan a 90 días, tablero de indicadores y 3 pasos para esta semana |
+
+[Luego la primera pregunta de la Fase 1 · Encuadre]
 
 ## MODO MINI EN DETALLE
 Para resolver un tema puntual en 15 a 20 minutos: diagnóstico rápido, revisión de la realidad del negocio y plan de acción a 30 días. No usa las 7 fases ni fichas de avance.
@@ -392,7 +437,7 @@ Formato de cada mensaje:
 Máximo 70 palabras.
 
 Al elegir el modo MINI:
-Explica que en unos 15 minutos y con máximo 10 preguntas harán un diagnóstico rápido y saldrán con un plan de acción a 30 días, muestra el recorrido (🔵 Enfoque → ⚪ Realidad del negocio → ⚪ Mirada y compromiso → ⚪ Plan de acción) y haz la Pregunta 1 de 10.
+Presenta el modo con la tabla MINI de PRESENTACIÓN DE MODOS y, en el mismo mensaje, haz la Pregunta 1 de 10.
 
 El recorrido:
 BLOQUE 1 · ENFOQUE (preguntas 1 y 2)
@@ -455,23 +500,16 @@ Después de la entrega:
 - Si quiere profundizar, ofrece continuar en modo EXPRÉS o COMPLETO aprovechando lo que ya se sabe.
 
 ---
-Empieza ahora con tu PRIMER MENSAJE: salúdame y pregúntame qué modo quiero usar.
+Empieza ahora con tu PRIMER MENSAJE: salúdame y muéstrame la tabla para elegir el modo.
 </script>
 <script>
 (function () {
-  // Si creas un Gem compartido en Gemini, pega aquí su enlace para que el botón lo abra directo.
-  var GEM_URL = '';
-
   var guiaUrl = new URL('guia.txt', window.location.href).href;
   var MSG = document.getElementById('mensaje').textContent.trim().replace('{{GUIA_URL}}', guiaUrl);
 
   var IAS = {
     chatgpt: { name: 'ChatGPT', url: function () { return 'https://chatgpt.com/'; },
-      howto: 'Cuando se abra ChatGPT: <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b>' },
-    claude: { name: 'Claude', url: function () { return 'https://claude.ai/new?q=' + encodeURIComponent(MSG); },
-      howto: 'Claude se abre con el mensaje listo: <b>solo toca enviar.</b> Si no aparece escrito, mantén presionado el campo de mensaje, toca Pegar y envía.' },
-    gemini: { name: 'Gemini', url: function () { return GEM_URL || 'https://gemini.google.com/app'; },
-      howto: 'Cuando se abra Gemini: <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b>' }
+      howto: 'Cuando se abra ChatGPT: <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b>' }
   };
 
   var overlay = document.getElementById('overlay');
@@ -511,21 +549,19 @@ Empieza ahora con tu PRIMER MENSAJE: salúdame y pregúntame qué modo quiero us
 
   function start(key) {
     var ia = IAS[key];
-    var useGem = key === 'gemini' && GEM_URL;
     var url = ia.url();
     clearTimers();
     overlay.querySelector('.auto').style.display = 'block';
     $('manual').style.display = 'none';
-    $('p-copy').style.display = useGem ? 'none' : 'flex';
     $('p-copy-t').textContent = 'Copiando instrucciones…';
     $('p-open-t').textContent = 'Abriendo ' + ia.name + '…';
-    $('howto').innerHTML = useGem ? 'Se abre tu consultor en Gemini. <b>Escribe: Hola, quiero empezar.</b>' : ia.howto;
+    $('howto').innerHTML = ia.howto;
     $('open-now').href = url;
     setState('p-copy', 'active');
     setState('p-open', '');
     overlay.classList.add('show');
 
-    var copied = useGem ? Promise.resolve(true) : copy(MSG);
+    var copied = copy(MSG);
     copied.then(function (ok) {
       if (!ok) { showManual(ia, url); return; }
       timers.push(setTimeout(function () {
