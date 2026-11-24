@@ -178,6 +178,22 @@
   .mode.mini { background: linear-gradient(140deg, #F5141F 0%, #A10816 100%); color: var(--paper); border: 0; }
   .mode.mini p { color: var(--paper); }
 
+  .deck { display: block; text-decoration: none; color: inherit; padding: 14px; }
+  .deck .thumb { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 16 / 9; box-shadow: 0 12px 28px rgba(120, 4, 16, 0.25); }
+  .deck .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+  .deck:hover .thumb img { transform: scale(1.03); }
+  .deck .play {
+    position: absolute; right: 12px; bottom: 12px;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    background: rgba(22, 22, 22, 0.85); color: var(--paper);
+    font-size: 13px; font-weight: 700; padding: 8px 14px 8px 11px; border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  .deck .play svg { width: 15px; height: 15px; }
+  .deck .info { padding: 14px 6px 4px; text-align: center; }
+  .deck .info h3 { font-size: 17px; font-weight: 800; }
+  .deck .info p { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+
   .tips p { font-size: 15px; font-weight: 500; }
   .tips p + p { margin-top: 10px; }
 
@@ -262,6 +278,20 @@
       <div class="card mode"><h3>Exprés</h3><p>Ordenar tu marketing en una sesión. Plan a 90 días.</p></div>
       <div class="card mode"><h3>Completo</h3><p>Tu negocio a fondo, en 7 fases. Plan a 90 días.</p></div>
     </div>
+  </section>
+
+  <section class="section">
+    <h2>Mira la presentación del taller</h2>
+    <a class="card deck" href="https://claude.ai/artifact/QXwPPTNz6oTc49hzVqMHKA" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img src="presentacion-portada.jpg" alt="Portada de la presentación Tu consultor IA de marketing" width="1280" height="720" loading="lazy">
+        <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Ver presentación</span>
+      </div>
+      <div class="info">
+        <h3>Tu consultor IA de marketing</h3>
+        <p>Qué tiene por dentro, cómo funciona y qué te entrega</p>
+      </div>
+    </a>
   </section>
 
   <section class="section card tips">
