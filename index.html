@@ -114,6 +114,21 @@
   .dots span { width: 10px; height: 10px; border-radius: 5px; background: #D2D2D2; }
   .dots span:first-child { background: var(--red); }
   .install { margin-top: -34px; position: relative; }
+  .alert {
+    position: relative;
+    margin-top: -34px;
+    display: flex; gap: 14px; align-items: flex-start;
+    background: linear-gradient(135deg, #FFF4D6 0%, #FFE7A3 100%);
+    border: 2px solid #F2B705;
+    border-radius: 20px;
+    padding: 16px 18px;
+    box-shadow: 0 14px 34px rgba(150, 100, 0, 0.18);
+  }
+  .alert .icon { font-size: 30px; line-height: 1; flex: 0 0 auto; }
+  .alert h2 { font-size: 20px; color: #7A4B00; margin-bottom: 4px; }
+  .alert p { font-size: 15px; font-weight: 500; color: #4A3300; }
+  .alert + .install { margin-top: 16px; }
+
   h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
   .section { margin-top: 26px; }
   .section > h2 { text-align: center; margin-bottom: 14px; }
@@ -131,6 +146,8 @@
     box-shadow: 0 8px 18px rgba(227, 6, 19, 0.3);
   }
   .steps b { font-weight: 700; }
+  .steps .word { white-space: nowrap; }
+  .tag.inline { font-size: 0.72em; padding: 0.14em 0.4em 0.18em; border-radius: 0.42em; margin-left: 0.18em; box-shadow: 0 0.2em 0.5em rgba(30, 30, 30, 0.25); transform: translateY(-0.1em); }
 
   /* Buttons */
   .buttons { display: grid; gap: 12px; }
@@ -214,13 +231,20 @@
 </header>
 
 <main>
+  <div class="alert" role="alert">
+    <span class="icon" aria-hidden="true">⚠️</span>
+    <div>
+      <h2>¡Error corregido!</h2>
+      <p>Ya puedes agregar las instrucciones a tu proyecto en ChatGPT.</p>
+    </div>
+  </div>
   <section class="card install">
     <div class="dots"><span></span><span></span><span></span></div>
     <h2>Instálalo en 3 pasos</h2>
     <ol class="steps">
       <li><span class="num">1</span><span>Toca <b>Instalar en ChatGPT</b>. Las instrucciones se copian solas.</span></li>
-      <li><span class="num">2</span><span>Cuando se abra, <b>mantén presionado el campo de mensaje, toca Pegar y envía.</b></span></li>
-      <li><span class="num">3</span><span>Tu consultor te saluda y te muestra los modos. <b>Elige uno y empieza.</b></span></li>
+      <li><span class="num">2</span><span><b>Crea tu proyecto en ChatGPT</b> y agrega las instrucciones.</span></li>
+      <li><span class="num">3</span><span><b>Comienza tu chat de <span class="word">consultor<span class="tag inline">IA</span></span></b></span></li>
     </ol>
     <div class="buttons">
       <button class="btn btn-chatgpt" data-ia="chatgpt">
@@ -321,6 +345,15 @@ Al elegir, presenta el modo con su tabla de MODOS (para qué sirve, recorrido, t
 6. PLAN DE ACCIÓN: hoja de ruta de 90 días priorizada por impacto y esfuerzo, con responsables, fechas e indicadores.
 7. ENTREGA: documentos finales, primeros pasos y contacto.
 En EXPRÉS recorre las fases de forma resumida, en una sesión. Al cerrar cada fase: resume, pide confirmación y entrega la FICHA DE AVANCE (mapa del proceso y tabla con empresa, fase completada, hallazgos, decisiones, supuestos y siguiente paso). Si el usuario pega una ficha en un chat nuevo, retoma desde ahí sin repetir preguntas.
+
+## FOCO EN EL OBJETIVO
+Al inicio deja el objetivo en una línea ("🎯 Objetivo: ...") y vuelve a él en cada paso. Ofrece máximo 3 opciones, recomienda una y pide elegir; lo demás va a "Pendientes".
+Si la persona divaga, se va por las ramas, abre opciones sin decidir, repite un tema o la conversación se alarga sin avanzar (o tú mismo te desvías), detente y envía:
+> 🎯 **¡Volvamos al foco!**
+> **Qué pasa:** [lo que ocurre, con respeto y sin culpar]
+> **Tu objetivo:** [el objetivo acordado]
+> **Volvamos:** [la decisión o pregunta pendiente]
+Luego sigue el proceso. Si quiere cambiar de objetivo, confírmalo y actualízalo.
 
 ## FORMATO VISUAL
 - Cada mensaje empieza con su ubicación: "📍 Fase 3 de 7 · Diagnóstico".
